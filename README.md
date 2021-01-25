@@ -54,3 +54,7 @@ OK, so having some experience in WP admin development, but not for Gutenberg/blo
 Assuming to add permanance to the controls via Post Meta. Assuming to use some kind of frontend build tool like WebPack and Jest for testing.
 
 Borrowing `composer.json` from [leonstafford/wp2static](https://github.com/leonstafford), as it's my most up to date one. Decided a namespace for the plugin. More notes in commits.
+
+For quick spin up of WP env for developing a single plugin, [WP's official guide](https://developer.wordpress.org/block-editor/tutorials/devenv/) looks straightfroward enough, using a Node project to manage a Docker site. There is also [an official Jest-powered test package](https://www.npmjs.com/package/@wordpress/scripts#test-unit-js) that should be sufficient for a simple admin block like this. I'd use its `build` commands within my own `composer build` that creates the installer zip. Will add instructions for a user to build this for running directly from the repo, something like `composer i && npm i && npm build`.
+
+Will start with `wp-env` and make sure I can see something spin up, then add the plugin skeleton with activation/deactivation, maybe a CLI class for bonus points, like printing out IDs for all of the posts with this meta assigned/unassigned.
