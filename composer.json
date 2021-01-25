@@ -1,7 +1,7 @@
 {
-    "name": "leonstafford/coding-test-advertising-standards",
+    "name": "leonstafford/coding-test-advertising-settings",
     "description": "Demonstrable Gutenberg block with automated tests.",
-    "homepage": "https://github.com/leonstafford/coding-test-advertising-standards",
+    "homepage": "https://github.com/leonstafford/coding-test-advertising-settings",
     "license": "UNLICENSE",
     "authors": [
         {
@@ -12,10 +12,10 @@
     ],
     "type": "wordpress-plugin",
     "support": {
-        "issues": "https://github.com/leonstafford/coding-test-advertising-standards/issues",
-        "forum": "https://github.com/leonstafford/coding-test-advertising-standards/settings",
-        "docs": "https://github.com/leonstafford/coding-test-advertising-standards/issues",
-        "source": "https://github.com/leonstafford/coding-test-advertising-standards/issues"
+        "issues": "https://github.com/leonstafford/coding-test-advertising-settings/issues",
+        "forum": "https://github.com/leonstafford/coding-test-advertising-settings/settings",
+        "docs": "https://github.com/leonstafford/coding-test-advertising-settings/issues",
+        "source": "https://github.com/leonstafford/coding-test-advertising-settings/issues"
     },
     "require": {
         "php": ">=7.3"
@@ -33,7 +33,7 @@
     },
     "autoload": {
         "psr-4": {
-            "CodingTestAdvertisingStandards\\": "src/"
+            "AdvertisingSettings\\": "src/"
         }
     },
     "config": {

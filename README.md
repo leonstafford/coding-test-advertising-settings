@@ -1,4 +1,4 @@
-# Coding Test Advertising Standards
+# Coding Test Advertising Settings
 
 Demonstrable Gutenberg block with automated tests.
 
