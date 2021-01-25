@@ -102,3 +102,5 @@ Added in a PHPCS ruleset that I'd been meaning to try out, [szepeviktor/phpcs-ps
 OK, back from dinner and will get onto appeasing the coding standards I chose. Have added exepcted failing tests to GitHub Actions workflow, too. At this point, I'm wiring up the basics, with tests in place, doing an occasional manual test to see if things are showing up in `wp-env`'s WP.
 
 Converting some of my boilerplate is going to be some slow grunt work, but good practice for me anyway, as am planning to move my projects to that. I also took the opportunity to apply best practices from @szepeviktor's [small project](https://github.com/szepeviktor/small-project), which is much more elegant, but different enough to what I'm used to with my plugins that it's taking me more time than expect to get the PHP part of things done.
+
+Made minor adjustment to GitHub workflow config file to get them triggering. Encountered this recently, when copying an old config, that I needed to simplify the trigger action. Can look into it another time, it's running tests now.
