@@ -29,10 +29,9 @@ class Audit
      *
      * @when after_wp_load
      *
-     * @param list<string> $args
      * @return void
      */
-    public function audit(array $args)
+    public function audit()
     {
         // Print the message.
         WP_CLI::info('A message');

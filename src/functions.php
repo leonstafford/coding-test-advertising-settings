@@ -13,28 +13,17 @@ declare(strict_types=1);
 
 namespace AdvertisingSettings;
 
-use AdvertisingSettings\ExampleCommand;
 use WP_CLI;
 
 use function current_user_can;
 use function esc_html__;
-use function esc_url;
-use function load_plugin_textdomain;
-
-/**
- * @return void
- */
-function loadTextDomain()
-{
-    load_plugin_textdomain('plugin-slug', false, dirname(Config::get('baseName')) . '/languages');
-}
 
 /**
  * @return void
  */
 function activate()
 {
-    // Run database migrations, initialize WordPress options etc.
+    \AdvertisingSettings\AsLog::createTable();
 }
 
 /**
@@ -59,7 +48,7 @@ function uninstall()
 function printRequirementsNotice()
 {
     // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
-    error_log('Plugin Name requirements are not met. Please read the Installation instructions.');
+    error_log('Advertising Settings requirements are not met. Please read the Installation instructions.');
 
     if (! current_user_can('activate_plugins')) {
         return;
@@ -67,10 +56,7 @@ function printRequirementsNotice()
 
     printf(
         '<div class="notice notice-error"><p>%1$s <a href="%2$s" target="_blank">%3$s</a> %4$s</p></div>',
-        esc_html__('Plugin Name activation failed! Please read', 'plugin-slug'),
-        esc_url('https://github.com/szepeviktor/small-project#installation'),
-        esc_html__('the Installation instructions', 'plugin-slug'),
-        esc_html__('for list of requirements.', 'plugin-slug')
+        esc_html__('Advertising Settings activation failed!', 'advertising-settings'),
     );
 }
 
@@ -79,7 +65,7 @@ function printRequirementsNotice()
  */
 function registerCliCommands()
 {
-    WP_CLI::add_command('advertising-settings', Audit::class);
+    WP_CLI::add_command('advertising-settings', \AdvertisingSettings\Audit::class);
 }
 
 /**
@@ -89,5 +75,5 @@ function registerCliCommands()
  */
 function boot()
 {
-    new AdvertisingSettings();
+    new \AdvertisingSettings\AdvertisingSettings();
 }

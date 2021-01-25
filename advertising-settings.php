@@ -32,12 +32,12 @@ if (! defined('ABSPATH')) {
 }
 
 // Load autoloader.
-if (! class_exists(Config::class) && is_file(__DIR__ . '/vendor/autoload.php')) {
+if (! class_exists(\AdvertisingSettings\Config::class) && is_file(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
 }
 
 // Prevent double activation.
-if (Config::get('version') !== null) {
+if (\AdvertisingSettings\Config::get('version') !== null) {
     add_action(
         'admin_notices',
         static function () {
@@ -50,7 +50,10 @@ if (Config::get('version') !== null) {
 
             printf(
                 '<div class="notice notice-warning"><p>%1$s<br>%2$s&nbsp;<code>%3$s</code></p></div>',
-                esc_html__('Advertising Settings already installed! Please deactivate all but one copies.', 'advertising-settings'),
+                esc_html__(
+                    'Advertising Settings already installed! Please deactivate all but one copies.',
+                    'advertising-settings'
+                ),
                 esc_html__('Current plugin path:', 'advertising-settings'),
                 esc_html(__FILE__)
             );
@@ -62,7 +65,7 @@ if (Config::get('version') !== null) {
 }
 
 // Define constant values.
-Config::init(
+\AdvertisingSettings\Config::init(
     [
         'version' => '0.0.1',
         'filePath' => __FILE__,
@@ -71,12 +74,9 @@ Config::init(
     ]
 );
 
-// Load translations.
-add_action('init', __NAMESPACE__ . '\\loadTextDomain', 10, 0);
-
 // Check requirements.
 if (
-    (new Requirements())
+    (new \AdvertisingSettings\Requirements())
         ->php('7.3')
         ->wp('5.2')
         ->multisite(false)
@@ -90,7 +90,7 @@ if (
 
     // Support WP-CLI.
     if (defined('WP_CLI') && \WP_CLI === true) {
-        registerCliCommands();
+        \AdvertisingSettings\registerCliCommands();
     }
 } else {
     // Suppress "Plugin activated." notice.
@@ -99,7 +99,7 @@ if (
     add_action('admin_notices', __NAMESPACE__ . '\\printRequirementsNotice', 0, 0);
 
     require_once \ABSPATH . 'wp-admin/includes/plugin.php';
-    deactivate_plugins([Config::get('baseName')], true);
+    deactivate_plugins([\AdvertisingSettings\Config::get('baseName')], true);
 }
 
 // Load translations.

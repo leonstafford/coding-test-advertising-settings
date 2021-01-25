@@ -1,0 +1,22 @@
+includes:
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+    - vendor/szepeviktor/phpstan-wordpress/extension.neon
+parameters:
+    level: max
+    phpVersion: 80000
+    inferPrivatePropertyTypeFromConstructor: true
+    bootstrapFiles:
+        - tests/phpstan/constants.php
+    scanFiles:
+        - vendor/php-stubs/wp-cli-stubs/wp-cli-stubs.php
+    paths:
+        - advertising-settings.php
+        - src/
+    ignoreErrors:
+        # WP-CLI accepts a class as callable
+        - '/^Parameter #2 \$callable of static method WP_CLI::add_command\(\) expects callable\(\): mixed, \S+ given\.$/'
+        # Variable loaded from wp-includes/version.php
+        -
+            message: '#^Undefined variable: \$wp_version$#'
+            count: 1
+            path: src/Requirements.php

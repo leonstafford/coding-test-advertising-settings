@@ -18,10 +18,11 @@
         "source": "https://github.com/leonstafford/coding-test-advertising-settings/issues"
     },
     "require": {
-        "php": ">=7.3"
+        "php": ">=7.4"
     },
     "require-dev": {
-        "thecodingmachine/phpstan-strict-rules": "*",
+        "phpstan/phpstan-strict-rules": "^0.12.7",
+        "php-stubs/wp-cli-stubs": "^2.4",
         "szepeviktor/phpstan-wordpress": "*",
         "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "*",
         "squizlabs/php_codesniffer": "*",
@@ -35,9 +36,9 @@
         "psr-4": {
             "AdvertisingSettings\\": "src/"
         },
-      "files": [
-        "src/functions.php"
-      ]
+        "files": [
+          "src/functions.php"
+        ]
     },
     "config": {
         "preferred-install": {
@@ -58,7 +59,6 @@
             "composer validate --strict",
             "@lint",
             "@phpcs",
-            "@php73",
             "@php74",
             "@phpstan",
             "@phpunit"

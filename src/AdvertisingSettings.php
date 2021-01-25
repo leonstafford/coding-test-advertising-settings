@@ -20,8 +20,6 @@ use AsLog;
  */
 final class AdvertisingSettings
 {
-    public string $boostrapFile;
-
     /**
      * Main controller of AdvertisingSettings
      *
@@ -47,7 +45,7 @@ final class AdvertisingSettings
         return self::$pluginInstance;
     }
 
-    public static function init( string $boostrapFile ): AdvertisingSettings
+    public static function init(): AdvertisingSettings
     {
         $pluginInstance = self::getInstance();
 
