@@ -114,3 +114,7 @@ Running `wp-env start` surfaced an error from bulk-rewriting. Fixing that shows 
 PHPUnit and ode quality tools running without issue now, but no assertions with one placeholder unit test. Going to add Pest to the mix and get first red-green test. Previous issue with MySQL query fixed by adjusting string formatting.
 
 GitHub Actions were still failing - removed PHP 7.3 from test matrix, leaving just 7.4 and 8. Added `composer install --ignore-platform-reqs` to workaround issue with upstream coding standard not adding PHP 8 support yet.
+
+Received PR from my coding guardian angel, @szepeviktor while in bed last night. [An issue where I'd prefixed FQCN's to appease PHPCS warnings, which I'd probably read as errors](https://github.com/leonstafford/coding-test-advertising-settings/pull/1). I think it's to do with plugin's entrypoint file not being a class, but will wait to hear some more feedback from Viktor, as he's the expert.
+
+That's more than enough time on the PHP side of things, so will now start on the Gutenberg panel, which I expect to be a bit of fun wiring up Webpack or yarn or what not, then see how I hook into Gutenberg.
