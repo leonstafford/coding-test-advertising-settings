@@ -2,6 +2,8 @@
 
 Demonstrable Gutenberg block with automated tests.
 
+[![codecheck](https://github.com/leonstafford/coding-test-advertising-settings/workflows/codecheck/badge.svg)](https://github.com/leonstafford/coding-test-advertising-settings/actions)
+
 Completed as part of a job application.
 
 ## User story
