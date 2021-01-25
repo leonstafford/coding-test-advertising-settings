@@ -1,0 +1,132 @@
+<?php
+
+namespace AdvertisingSettings;
+
+use WP_Error;
+use WP_CLI;
+use WP_Post;
+
+class Controller {
+    /**
+     * @var string
+     */
+    public $bootstrap_file;
+
+    /**
+     * Main controller of AdvertisingSettings
+     *
+     * @var \AdvertisingSettings\Controller Instance.
+     */
+    protected static $plugin_instance = null;
+
+    protected function __construct() {}
+
+    /**
+     * Returns instance of AdvertisingSettings Controller
+     *
+     * @return \AdvertisingSettings\Controller Instance of self.
+     */
+    public static function getInstance() : Controller {
+        if ( null === self::$plugin_instance ) {
+            self::$plugin_instance = new self();
+        }
+
+        return self::$plugin_instance;
+    }
+
+    public static function init( string $bootstrap_file ) : Controller {
+        $plugin_instance = self::getInstance();
+
+        WordPressAdmin::registerHooks( $bootstrap_file );
+        WordPressAdmin::addAdminUIElements();
+
+        ASLog::l( 'Plugin controller initialized' );
+
+        Utils::set_max_execution_time();
+
+        return $plugin_instance;
+    }
+
+    /**
+     * Adjusts position of dashboard menu icons
+     *
+     * @param string[] $menu_order list of menu items
+     * @return string[] list of menu items
+     */
+    public static function setMenuOrder( array $menu_order ) : array {
+        $order = [];
+        $file  = plugin_basename( __FILE__ );
+
+        foreach ( $menu_order as $index => $item ) {
+            if ( $item === 'index.php' ) {
+                $order[] = $item;
+            }
+        }
+
+        $order = [
+            'index.php',
+            'advertising-settings',
+        ];
+
+        return $order;
+    }
+
+    public static function deactivateForSingleSite() : void {
+        WPCron::clearRecurringEvent();
+    }
+
+    public static function deactivate( bool $network_wide = null ) : void {
+        if ( $network_wide ) {
+            global $wpdb;
+
+            $query = 'SELECT blog_id FROM %s WHERE site_id = %d;';
+
+            $site_ids = $wpdb->get_col(
+                sprintf(
+                    $query,
+                    $wpdb->blogs,
+                    $wpdb->siteid
+                )
+            );
+
+            foreach ( $site_ids as $site_id ) {
+                switch_to_blog( $site_id );
+                self::deactivateForSingleSite();
+            }
+
+            restore_current_blog();
+        } else {
+            self::deactivateForSingleSite();
+        }
+    }
+
+    public static function activateForSingleSite() : void {
+        ASLog::createTable();
+        // TODO: do I need to prep the Post Meta table?
+    }
+
+    public static function activate( bool $network_wide = null ) : void {
+        if ( $network_wide ) {
+            global $wpdb;
+
+            $query = 'SELECT blog_id FROM %s WHERE site_id = %d;';
+
+            $site_ids = $wpdb->get_col(
+                sprintf(
+                    $query,
+                    $wpdb->blogs,
+                    $wpdb->siteid
+                )
+            );
+
+            foreach ( $site_ids as $site_id ) {
+                switch_to_blog( $site_id );
+                self::activateForSingleSite();
+            }
+
+            restore_current_blog();
+        } else {
+            self::activateForSingleSite();
+        }
+    }
+}
