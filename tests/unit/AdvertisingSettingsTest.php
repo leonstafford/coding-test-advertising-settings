@@ -13,24 +13,8 @@ declare(strict_types=1);
 
 namespace AdvertisingSettings;
 
-use Mockery;
-use WP_Mock;
+it('asserts true is true', function () {
+    $this->assertTrue(true);
 
-/**
- * @runTestsInSeparateProcesses
- * @preserveGlobalState disabled
- */
-final class AdvertisingSettingsTest extends \WP_Mock\Tools\TestCase
-{
-
-    public function setUp(): void
-    {
-        WP_Mock::setUp();
-    }
-
-    public function tearDown(): void
-    {
-        WP_Mock::tearDown();
-        Mockery::close();
-    }
-}
+    expect(true)->toBeTrue();
+});
