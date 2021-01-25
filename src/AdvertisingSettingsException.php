@@ -1,9 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AdvertisingSettings;
 
-use Exception;
-
-class AdvertisingSettingsException extends Exception {
+class AdvertisingSettingsException extends \Exception
+{
 }
-

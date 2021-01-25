@@ -23,10 +23,10 @@
     "require-dev": {
         "thecodingmachine/phpstan-strict-rules": "*",
         "szepeviktor/phpstan-wordpress": "*",
+        "szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset": "*",
         "squizlabs/php_codesniffer": "*",
         "phpunit/phpunit": "*",
         "dealerdirect/phpcodesniffer-composer-installer": "*",
-        "wp-coding-standards/wpcs": "*",
         "phpcompatibility/php-compatibility": "*",
         "php-parallel-lint/php-parallel-lint": "*",
         "10up/wp_mock": "^0.4.2"
@@ -44,8 +44,8 @@
     },
     "scripts": {
         "phpstan": "php -d memory_limit=-1 ./vendor/bin/phpstan analyse",
-        "phpcbf": "vendor/bin/phpcbf --standard=./tools/phpcs.xml --ignore=*/js/*,*/tests/phpstan/*,*/admin/*,*/coverage/*,*.js,*/vendor/* ./",
-        "phpcs":  "vendor/bin/phpcs  -s --standard=./tools/phpcs.xml --ignore=*/tests/phpstan/*,*/admin/*,**/coverage/*,*.js,*/vendor/* ./",
+        "phpcbf": "vendor/bin/phpcbf --standard=PSR12NeutronRuleset --ignore=*/js/*,*/tests/phpstan/*,*/admin/*,*/coverage/*,*.js,*/vendor/* ./",
+        "phpcs":  "vendor/bin/phpcs  -s --standard=PSR12NeutronRuleset --ignore=*/tests/phpstan/*,*/admin/*,**/coverage/*,*.js,*/vendor/* ./",
         "php73": "vendor/bin/phpcs --standard=PHPCompatibility --runtime-set testVersion 7.3 --ignore=*/tests/*,*/admin/*,**/coverage/*,*.js,*/vendor/* ./",
         "php74": "vendor/bin/phpcs --standard=PHPCompatibility --runtime-set testVersion 7.4 --ignore=*/tests/*,*/admin/*,**/coverage/*,*.js,*/vendor/* ./",
         "phpunit": "vendor/bin/phpunit ./tests/unit/",

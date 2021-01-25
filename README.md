@@ -51,13 +51,13 @@ Completed as part of a job application.
 
 ### To use plugin from source code
 
- - `composer i`
+ - `composer i --ignore-platform-reqs` (workaround for Automattic's phpcs-neutron locked to < 8 still)
  - `npm i`
  - `npm build`
 
 ### To build an installable zip
 
- - `composer i`
+ - `composer i --ignore-platform-reqs` (workaround for Automattic's phpcs-neutron locked to < 8 still)
  - `npm i`
  - `npm build`
  - `composer build PLUGIN-NAME-VERSION` where output will be `PLUGIN-NAME-VERSION.zip`
@@ -73,7 +73,9 @@ I'll use a unified `composer test` to test the PHP and JS together.
 
 ### Manual testing
 
-- `wp-env start` launches docker container on `:8888` with plugin installed and activated. Username/password are `admin/password`.
+ - `composer i`
+ - `npm i`
+ - `wp-env start` launches docker container on `:8888` with plugin installed and activated. Username/password are `admin/password`.
 
 ## Development notes
 
@@ -88,3 +90,9 @@ For quick spin up of WP env for developing a single plugin, [WP's official guide
 Will start with `wp-env` and make sure I can see something spin up, then add the plugin skeleton with activation/deactivation, maybe a CLI class for bonus points, like printing out IDs for all of the posts with this meta assigned/unassigned.
 
 Installs NVM, as I wiped this machine and haven't needed any Node stuff this week. Installs Node LTS. Installs `wp-env` globally. `wp-env start` unsuprisingly comlains that there's no config and can't detect the project type (doesn't infer from `composer.json`'s `"type": "wordpress-plugin"`!). I'll copy in one of my plugin's entrypoint and `Controller` or `WordPressAdmin` classes. There's some good [plugin guidelines](https://github.com/szepeviktor/small-project) that I'm using amongst other checks in a new auditing tool for my own projects, I'll try to review that as part of this and serve a polished new plugin.
+
+Testing `wp-env start` again throws a nice error now:
+
+> Uncaught AdvertisingSettings\AdvertisingSettingsException: Looks like you're trying to activate AdvertisingSettings from source code, without compiling it first.
+
+So some of my boiler plate code is working. I'll need to `composer i` before that...

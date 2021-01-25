@@ -1,46 +1,46 @@
 <?php
 
+declare(strict_types=1);
+
 namespace AdvertisingSettings;
 
-use WP_Error;
-use WP_CLI;
-use WP_Post;
-
-class Controller {
-    /**
-     * @var string
-     */
-    public $bootstrap_file;
+class Controller
+{
+    public string $bootstrap_file;
 
     /**
      * Main controller of AdvertisingSettings
      *
      * @var \AdvertisingSettings\Controller Instance.
      */
-    protected static $plugin_instance = null;
+    protected static ?AdvertisingSettings\Controller $plugin_instance;
 
-    protected function __construct() {}
+    protected function __construct()
+    {
+    }
 
     /**
      * Returns instance of AdvertisingSettings Controller
      *
      * @return \AdvertisingSettings\Controller Instance of self.
      */
-    public static function getInstance() : Controller {
-        if ( null === self::$plugin_instance ) {
+    public static function getInstance(): Controller
+    {
+        if (self::$plugin_instance === null) {
             self::$plugin_instance = new self();
         }
 
         return self::$plugin_instance;
     }
 
-    public static function init( string $bootstrap_file ) : Controller {
+    public static function init( string $bootstrap_file ): Controller
+    {
         $plugin_instance = self::getInstance();
 
-        WordPressAdmin::registerHooks( $bootstrap_file );
+        WordPressAdmin::registerHooks($bootstrap_file);
         WordPressAdmin::addAdminUIElements();
 
-        ASLog::l( 'Plugin controller initialized' );
+        ASLog::l('Plugin controller initialized');
 
         Utils::set_max_execution_time();
 
@@ -50,33 +50,36 @@ class Controller {
     /**
      * Adjusts position of dashboard menu icons
      *
-     * @param string[] $menu_order list of menu items
-     * @return string[] list of menu items
+     * @param array<string> $menu_order list of menu items
+     * @return array<string> list of menu items
      */
-    public static function setMenuOrder( array $menu_order ) : array {
+    public static function setMenuOrder( array $menu_order ): array
+    {
         $order = [];
-        $file  = plugin_basename( __FILE__ );
+        $file = plugin_basename(__FILE__);
 
-        foreach ( $menu_order as $index => $item ) {
-            if ( $item === 'index.php' ) {
-                $order[] = $item;
+        foreach ($menu_order as $index => $item) {
+            if ($item !== 'index.php') {
+                continue;
             }
+
+            $order[] = $item;
         }
 
-        $order = [
+        return [
             'index.php',
             'advertising-settings',
         ];
-
-        return $order;
     }
 
-    public static function deactivateForSingleSite() : void {
+    public static function deactivateForSingleSite(): void
+    {
         WPCron::clearRecurringEvent();
     }
 
-    public static function deactivate( bool $network_wide = null ) : void {
-        if ( $network_wide ) {
+    public static function deactivate( ?bool $network_wide = null ): void
+    {
+        if ($network_wide) {
             global $wpdb;
 
             $query = 'SELECT blog_id FROM %s WHERE site_id = %d;';
@@ -89,8 +92,8 @@ class Controller {
                 )
             );
 
-            foreach ( $site_ids as $site_id ) {
-                switch_to_blog( $site_id );
+            foreach ($site_ids as $site_id) {
+                switch_to_blog($site_id);
                 self::deactivateForSingleSite();
             }
 
@@ -100,13 +103,15 @@ class Controller {
         }
     }
 
-    public static function activateForSingleSite() : void {
+    public static function activateForSingleSite(): void
+    {
         ASLog::createTable();
         // TODO: do I need to prep the Post Meta table?
     }
 
-    public static function activate( bool $network_wide = null ) : void {
-        if ( $network_wide ) {
+    public static function activate( ?bool $network_wide = null ): void
+    {
+        if ($network_wide) {
             global $wpdb;
 
             $query = 'SELECT blog_id FROM %s WHERE site_id = %d;';
@@ -119,8 +124,8 @@ class Controller {
                 )
             );
 
-            foreach ( $site_ids as $site_id ) {
-                switch_to_blog( $site_id );
+            foreach ($site_ids as $site_id) {
+                switch_to_blog($site_id);
                 self::activateForSingleSite();
             }
 

@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /*
     WordPressAdmin
 
@@ -9,13 +12,14 @@
 
 namespace AdvertisingSettings;
 
-class WordPressAdmin {
+class WordPressAdmin
+{
 
     /**
      * WordPressAdmin constructor
      */
-    public function __construct() {
-
+    public function __construct()
+    {
     }
 
     /**
@@ -23,7 +27,8 @@ class WordPressAdmin {
      *
      * @param string $bootstrap_file main plugin filepath
      */
-    public static function registerHooks( string $bootstrap_file ) : void {
+    public static function registerHooks( string $bootstrap_file ): void
+    {
         register_activation_hook(
             $bootstrap_file,
             [ Controller::class, 'activate' ]
@@ -36,8 +41,8 @@ class WordPressAdmin {
 
         // TODO: placeholder filter
         // add_filter(
-        //     'advertising_settings_do_something',
-        //     [ CrawlCache::class, 'advertising_settings_do_something' ]
+        // 'advertising_settings_do_something',
+        // [ CrawlCache::class, 'advertising_settings_do_something' ]
         // );
+    }
 }
-
