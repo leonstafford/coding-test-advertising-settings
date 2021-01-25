@@ -104,3 +104,5 @@ OK, back from dinner and will get onto appeasing the coding standards I chose. H
 Converting some of my boilerplate is going to be some slow grunt work, but good practice for me anyway, as am planning to move my projects to that. I also took the opportunity to apply best practices from @szepeviktor's [small project](https://github.com/szepeviktor/small-project), which is much more elegant, but different enough to what I'm used to with my plugins that it's taking me more time than expect to get the PHP part of things done.
 
 Made minor adjustment to GitHub workflow config file to get them triggering. Encountered this recently, when copying an old config, that I needed to simplify the trigger action. Can look into it another time, it's running tests now.
+
+Code analysis tools now green. Whether the code is still functional is yet unknown. I'll try to add in Pest for unit/integration tests, another tool on my todo list for my own projects this week.

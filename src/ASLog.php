@@ -24,7 +24,7 @@ class AsLog
 
         $tableName = $wpdb->prefix . 'advertising_settings_log';
 
-        $charsetCollate = $wpdb->get_charsetCollate();
+        $charsetCollate = $wpdb->get_charset_collate();
 
         $sql = $wpdb->prepare(
             'CREATE TABLE %s (
