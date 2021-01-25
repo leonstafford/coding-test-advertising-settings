@@ -1,27 +1,44 @@
 <?php
 
+/**
+ * Requirements.php
+ *
+ * @package           AdvertisingSettings
+ * @author            Leon Stafford <me@ljs.dev>
+ * @license           The Unlicense
+ * @link              https://unlicense.org
+ */
+
 declare(strict_types=1);
 
 namespace AdvertisingSettings;
 
+/**
+ * Logger.
+ */
 class ASLog
 {
     public static function createTable(): void
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . 'advertising_settings_log';
+        $tableName = $wpdb->prefix . 'advertising_settings_log';
 
-        $charset_collate = $wpdb->get_charset_collate();
+        $charsetCollate = $wpdb->get_charsetCollate();
 
-        $sql = "CREATE TABLE $table_name (
+        $sql = $wpdb->prepare(
+            'CREATE TABLE %s (
             id mediumint(9) NOT NULL AUTO_INCREMENT,
             time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
             log TEXT NOT NULL,
             PRIMARY KEY  (id)
-        ) $charset_collate;";
+        ) %s;',
+            $tableName,
+            $charsetCollate
+        );
 
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+        // phpcs:ignore
         dbDelta($sql);
     }
 
@@ -29,10 +46,10 @@ class ASLog
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . 'advertising_settings_log';
+        $tableName = $wpdb->prefix . 'advertising_settings_log';
 
         $wpdb->insert(
-            $table_name,
+            $tableName,
             [
                 'log' => $text,
             ]
@@ -49,28 +66,6 @@ class ASLog
     }
 
     /**
-     * Log multiple lines at once
-     *
-     * @param array<string> $lines List of lines to log
-     */
-    public static function lines( array $lines ): void
-    {
-        global $wpdb;
-
-        $table_name = $wpdb->prefix . 'advertising_settings_log';
-
-        $current_time = current_time('mysql');
-
-        $query = "INSERT INTO $table_name (log) VALUES " .
-            implode(
-                ',',
-                array_fill(0, count($lines), '(%s)')
-            );
-
-        $wpdb->query($wpdb->prepare($query, $lines));
-    }
-
-    /**
      * Get all log lines
      *
      * @return array<mixed> array of Log items
@@ -78,11 +73,10 @@ class ASLog
     public static function getAll(): array
     {
         global $wpdb;
-        $logs = [];
 
-        $table_name = $wpdb->prefix . 'advertising_settings_log';
+        $tableName = $wpdb->prefix . 'advertising_settings_log';
 
-        return $wpdb->get_results("SELECT time, log FROM $table_name ORDER BY id DESC");
+        return $wpdb->get_results($wpdb->prepare('SELECT time, log FROM %s ORDER BY id DESC', $tableName));
     }
 
     /**
@@ -92,12 +86,15 @@ class ASLog
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . 'advertising_settings_log';
+        $tableName = $wpdb->prefix . 'advertising_settings_log';
 
         $logs = $wpdb->get_col(
-            "SELECT CONCAT_WS(': ', time, log)
-            FROM $table_name
-            ORDER BY id DESC"
+            $wpdb->prepare(
+                "SELECT CONCAT_WS(': ', time, log)
+            FROM %s
+            ORDER BY id DESC",
+                $tableName
+            )
         );
 
         $logs = implode(PHP_EOL, $logs);
@@ -112,9 +109,9 @@ class ASLog
     {
         global $wpdb;
 
-        $table_name = $wpdb->prefix . 'advertising_settings_log';
+        $tableName = $wpdb->prefix . 'advertising_settings_log';
 
-        $wpdb->query("TRUNCATE TABLE $table_name");
+        $wpdb->query($wpdb->prepare('TRUNCATE TABLE %s', $tableName));
 
         self::l('Deleted all Logs');
     }

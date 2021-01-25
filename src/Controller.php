@@ -13,7 +13,7 @@ class Controller
      *
      * @var \AdvertisingSettings\Controller Instance.
      */
-    protected static ?AdvertisingSettings\Controller $plugin_instance;
+    protected static ?\AdvertisingSettings\Controller $plugin_instance;
 
     protected function __construct()
     {
@@ -26,7 +26,7 @@ class Controller
      */
     public static function getInstance(): Controller
     {
-        if (self::$plugin_instance === null) {
+        if (isset(self::$plugin_instance) === false) {
             self::$plugin_instance = new self();
         }
 
