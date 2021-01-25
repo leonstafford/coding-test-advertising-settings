@@ -109,6 +109,6 @@ Code analysis tools now green. Whether the code is still functional is yet unkno
 
 Running `wp-env start` surfaced an error from bulk-rewriting. Fixing that shows the plugin installed and activated (but not doing anything yet). Deactivating and activating via WP admin surfaces an issue with dbDelta/SQL query, with a bunch of `\n`'s in it. So, I know where that's come from - adjusting older manually formed queries with `$wpdb->prepare()`'s and not handling the newlines correctly. Fixing now.
 
-
+PHPUnit and ode quality tools running without issue now, but no assertions with one placeholder unit test. Going to add Pest to the mix and get first red-green test. Previous issue with MySQL query fixed by adjusting string formatting.
 
 
