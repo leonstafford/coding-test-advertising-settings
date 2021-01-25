@@ -96,3 +96,5 @@ Testing `wp-env start` again throws a nice error now:
 > Uncaught AdvertisingSettings\AdvertisingSettingsException: Looks like you're trying to activate AdvertisingSettings from source code, without compiling it first.
 
 So some of my boiler plate code is working. I'll need to `composer i` before that...
+
+Added in a PHPCS ruleset that I'd been meaning to try out, [szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset](https://github.com/szepeviktor/phpcs-psr-12-neutron-hybrid-ruleset). Unfortunately, the upstream ruleset by Automattic that it uses is semver locked, so requires a `composer i --ignore-platform-reqs` to overcome. Also, my project I copied boilerplate from is quite different coding standard, so will take some time to do a bit of search-replacing of vars and some other adjustments.
