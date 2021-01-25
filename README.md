@@ -107,4 +107,8 @@ Made minor adjustment to GitHub workflow config file to get them triggering. Enc
 
 Code analysis tools now green. Whether the code is still functional is yet unknown. I'll try to add in Pest for unit/integration tests, another tool on my todo list for my own projects this week.
 
-Running `wp-env start` surfaced an error from bulk-rewriting. Fixing that shows the plugin installed and activated (but not doing anything yet).
+Running `wp-env start` surfaced an error from bulk-rewriting. Fixing that shows the plugin installed and activated (but not doing anything yet). Deactivating and activating via WP admin surfaces an issue with dbDelta/SQL query, with a bunch of `\n`'s in it. So, I know where that's come from - adjusting older manually formed queries with `$wpdb->prepare()`'s and not handling the newlines correctly. Fixing now.
+
+
+
+

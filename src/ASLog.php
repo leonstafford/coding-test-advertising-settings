@@ -27,12 +27,13 @@ class AsLog
         $charsetCollate = $wpdb->get_charset_collate();
 
         $sql = $wpdb->prepare(
-            'CREATE TABLE %s (
-            id mediumint(9) NOT NULL AUTO_INCREMENT,
-            time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-            log TEXT NOT NULL,
-            PRIMARY KEY  (id)
-        ) %s;',
+            'CREATE ' .
+            ' TABLE %s (' .
+            ' id mediumint(9) NOT NULL AUTO_INCREMENT,' .
+            ' time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,' .
+            ' log TEXT NOT NULL,' .
+            ' PRIMARY KEY  (id)' .
+            ' ) %s;',
             $tableName,
             $charsetCollate
         );
