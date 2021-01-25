@@ -1,9 +1,7 @@
 name: codequality
 
-on:
-  push:
-    branches:
-    - master
+on: push
+
 jobs:
   test:
     runs-on: ubuntu-latest
