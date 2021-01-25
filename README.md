@@ -106,3 +106,5 @@ Converting some of my boilerplate is going to be some slow grunt work, but good 
 Made minor adjustment to GitHub workflow config file to get them triggering. Encountered this recently, when copying an old config, that I needed to simplify the trigger action. Can look into it another time, it's running tests now.
 
 Code analysis tools now green. Whether the code is still functional is yet unknown. I'll try to add in Pest for unit/integration tests, another tool on my todo list for my own projects this week.
+
+Running `wp-env start` surfaced an error from bulk-rewriting. Fixing that shows the plugin installed and activated (but not doing anything yet).
