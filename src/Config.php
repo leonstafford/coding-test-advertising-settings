@@ -35,9 +35,9 @@ final class Config
     }
 
     /**
-     * @return mixed
+     * @return array<string, mixed>
      */
-    public static function get(string $key)
+    public static function get(string $key): array
     {
         if (! isset(self::$container) || ! array_key_exists($key, self::$container)) {
             return null;

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Requirements.php
+ * AsLog.php
  *
  * @package           AdvertisingSettings
  * @author            Leon Stafford <me@ljs.dev>
@@ -16,7 +16,7 @@ namespace AdvertisingSettings;
 /**
  * Logger.
  */
-class ASLog
+class AsLog
 {
     public static function createTable(): void
     {

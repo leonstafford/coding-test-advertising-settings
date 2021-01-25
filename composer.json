@@ -34,7 +34,10 @@
     "autoload": {
         "psr-4": {
             "AdvertisingSettings\\": "src/"
-        }
+        },
+      "files": [
+        "src/functions.php"
+      ]
     },
     "config": {
         "preferred-install": {
