@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace AdvertisingSettings;
 
-use AsLog;
-
 /**
  * Plugin main instance
  */

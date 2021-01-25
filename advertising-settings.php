@@ -40,7 +40,7 @@ if (! class_exists(\AdvertisingSettings\Config::class) && is_file(__DIR__ . '/ve
 if (\AdvertisingSettings\Config::get('version') !== null) {
     add_action(
         'admin_notices',
-        static function () {
+        static function (): void {
             // phpcs:ignore Squiz.PHP.DiscouragedFunctions.Discouraged
             error_log('Advertising Settings double activation. Please remove all but one copies. ' . __FILE__);
 
@@ -99,8 +99,5 @@ if (
     add_action('admin_notices', __NAMESPACE__ . '\\printRequirementsNotice', 0, 0);
 
     require_once \ABSPATH . 'wp-admin/includes/plugin.php';
-    deactivate_plugins([\AdvertisingSettings\Config::get('baseName')], true);
+    deactivate_plugins([(string)\AdvertisingSettings\Config::get('baseName')], true);
 }
-
-// Load translations.
-add_action('init', __NAMESPACE__ . '\\loadTextDomain', 10, 0);

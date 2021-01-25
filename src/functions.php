@@ -55,7 +55,7 @@ function printRequirementsNotice()
     }
 
     printf(
-        '<div class="notice notice-error"><p>%1$s <a href="%2$s" target="_blank">%3$s</a> %4$s</p></div>',
+        '<div class="notice notice-error"><p>%1$s</p></div>',
         esc_html__('Advertising Settings activation failed!', 'advertising-settings'),
     );
 }
@@ -65,7 +65,7 @@ function printRequirementsNotice()
  */
 function registerCliCommands()
 {
-    WP_CLI::add_command('advertising-settings', \AdvertisingSettings\Audit::class);
+    WP_CLI::add_command('advertising-settings', \AdvertisingSettings\Cli\Audit::class);
 }
 
 /**

@@ -34,6 +34,6 @@ class Audit
     public function audit()
     {
         // Print the message.
-        WP_CLI::info('A message');
+        WP_CLI::line('TODO: print out CLI info');
     }
 }
