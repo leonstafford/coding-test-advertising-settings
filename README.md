@@ -118,3 +118,7 @@ GitHub Actions were still failing - removed PHP 7.3 from test matrix, leaving ju
 Received PR from my coding guardian angel, @szepeviktor while in bed last night. [An issue where I'd prefixed FQCN's to appease PHPCS warnings, which I'd probably read as errors](https://github.com/leonstafford/coding-test-advertising-settings/pull/1). I think it's to do with plugin's entrypoint file not being a class, but will wait to hear some more feedback from Viktor, as he's the expert.
 
 That's more than enough time on the PHP side of things, so will now start on the Gutenberg panel, which I expect to be a bit of fun wiring up Webpack or yarn or what not, then see how I hook into Gutenberg.
+
+Browsing through docs and tutorials as I won't be the first person to add a custom panel to the Post Settings. Took me a while to figure out that `PluginDocumentSettingPanel` is the `Post` one and that the label has changed at some point in Gutenberg's life. Also seeing that there's a backwards compatible metabox way to add custom fields and via React component, so looking for the latter.
+
+
