@@ -32,12 +32,12 @@ if (! defined('ABSPATH')) {
 }
 
 // Load autoloader.
-if (! class_exists(\AdvertisingSettings\Config::class) && is_file(__DIR__ . '/vendor/autoload.php')) {
+if (! class_exists(Config::class) && is_file(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
 }
 
 // Prevent double activation.
-if (\AdvertisingSettings\Config::get('version') !== null) {
+if (Config::get('version') !== null) {
     add_action(
         'admin_notices',
         static function (): void {
@@ -65,7 +65,7 @@ if (\AdvertisingSettings\Config::get('version') !== null) {
 }
 
 // Define constant values.
-\AdvertisingSettings\Config::init(
+Config::init(
     [
         'version' => '0.0.1',
         'filePath' => __FILE__,
@@ -76,7 +76,7 @@ if (\AdvertisingSettings\Config::get('version') !== null) {
 
 // Check requirements.
 if (
-    (new \AdvertisingSettings\Requirements())
+    (new Requirements())
         ->php('7.3')
         ->wp('5.2')
         ->multisite(false)
@@ -90,7 +90,7 @@ if (
 
     // Support WP-CLI.
     if (defined('WP_CLI') && \WP_CLI === true) {
-        \AdvertisingSettings\registerCliCommands();
+        registerCliCommands();
     }
 } else {
     // Suppress "Plugin activated." notice.
@@ -99,5 +99,5 @@ if (
     add_action('admin_notices', __NAMESPACE__ . '\\printRequirementsNotice', 0, 0);
 
     require_once \ABSPATH . 'wp-admin/includes/plugin.php';
-    deactivate_plugins([(string)\AdvertisingSettings\Config::get('baseName')], true);
+    deactivate_plugins([(string)Config::get('baseName')], true);
 }
