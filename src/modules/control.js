@@ -51,6 +51,23 @@ let ControlCreate = controlProps => {
               [controlName]: select('core/editor').getEditedPostAttribute('meta')[controlNameMeta]
             }
           }
+      /* check RadioControl for empty value, in which case safish to set
+       * ToggleControl to default On.
+       * TODO: Bug when adjusting RadioControl, will set
+       * ToggleControl back to false :{
+       */
+      } else if (controlName === 'advertising_settings_advertisements_metafield') {
+          let radioValue = select('core/editor').getEditedPostAttribute('meta')['advertising_settings_commercial_content_type_metafield']
+          if (! radioValue) {
+            return {
+              [controlName]: 'true'
+            }
+          } else {
+            return {
+              [controlName]: select('core/editor').getEditedPostAttribute('meta')[controlNameMeta]
+            }
+          }
+    
       } else {
         return {
           [controlName]: select('core/editor').getEditedPostAttribute('meta')[controlNameMeta]

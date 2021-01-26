@@ -159,3 +159,7 @@ MariaDB [wordpress]> select * from wp_postmeta;
 ```
 
 Finished the RadioControl acceptance criteria with setting default to `none` not too bad. Was wondering about how to set the ToggleControl's one, as it is boolean, so couldn't check for empty in current setup. Looking at `wp_postmeta` though, there's no entries until a post is saved, so can look for empty row for the post ID to determine if to default it to `On`. For toggling visbility of the `Advertiser Name`, I can probably get away with some lookups in the `./src/module/control.js`'s event handlers, as it's only 3 controls. Not scalable and not as pretty as I've done in Vue and Angular before, but will still take me a while to figure out this React stuff...
+
+OK, had quick attempt at registering custom API endpoint to check for missing meta key for post ID to set default ToggleControl state. Didn't have success, so will see if I can quickly query the state of other components within my current setup and workaround that way - chasing those acceptance criteria, but now in a bit of a hacky way :P
+
+So, that kind of worked. If there's no RadioControl value set, it will set the ToggleControl to On, which for this time of night seems kind of usable, but with a major issue of when you then adjust the RadioControl, it will apply same logic check again, setting the ToggleControl to off! Possible solution is to dispatch/save on the first check. Will leave that for now and look at conditionally hiding the 3rd control field based on RadioControl's selection.
