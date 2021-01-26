@@ -1,11 +1,10 @@
 console.log('loaded script');
 
-import ControlCreate from './modules/control'
-
 import { registerPlugin } from "@wordpress/plugins";
 import { PluginDocumentSettingPanel } from "@wordpress/edit-post";
 import { ToggleControl, RadioControl, TextControl } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
+import { withSelect } from '@wordpress/data';
 
 const AdvertisementsToggle = withState( {
   hasAdvertisements: true,
@@ -19,7 +18,7 @@ const AdvertisementsToggle = withState( {
 ) );
  
 const CommercialContentType = withState( {
-  option: 'none',
+  option: 'none', initialState: 'none'
 } )( ( { option, setState } ) => (
   <RadioControl
     label="Commercial Content Type"
