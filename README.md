@@ -15,8 +15,8 @@ Completed as part of a job application.
 ## Acceptance Criteria
 
 
- - [ ] In the Gutenberg/Block Editor, a new custom panel is visible in the sidebar for the standard “post” type
- - [ ] The custom panel title is “Advertising Settings”
+ - [x] In the Gutenberg/Block Editor, a new custom panel is visible in the sidebar for the standard “post” type
+ - [x] The custom panel title is “Advertising Settings”
  - [ ] Three fields appear in the custom panel, their requirements are outlined below
  - [ ] These fields should be disabled while post is being saved/updated/published
 
@@ -122,3 +122,5 @@ That's more than enough time on the PHP side of things, so will now start on the
 Browsing through docs and tutorials as I won't be the first person to add a custom panel to the Post Settings. Took me a while to figure out that `PluginDocumentSettingPanel` is the `Post` one and that the label has changed at some point in Gutenberg's life. Also seeing that there's a backwards compatible metabox way to add custom fields and via React component, so looking for the latter.
 
 Started with `wp-scripts` training wheels on, but doesn't look like it will allow compiling TS, so can go back to that and replace with custom build tool later, time permitting.
+
+
