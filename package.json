@@ -28,5 +28,9 @@
   "homepage": "https://github.com/leonstafford/coding-test-advertising-settings#readme",
   "devDependencies": {
     "@wordpress/scripts": "^13.0.0"
+  },
+  "dependencies": {
+    "@wordpress/edit-post": "^3.26.2",
+    "@wordpress/plugins": "^2.24.2"
   }
 }
