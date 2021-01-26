@@ -7,20 +7,43 @@ import { PluginDocumentSettingPanel } from "@wordpress/edit-post";
 import { ToggleControl, RadioControl, TextControl } from '@wordpress/components';
 import { withState } from '@wordpress/compose';
 
-let AdvertisementsToggle = ControlCreate({
-  component: ToggleControl,
-  name: 'advertising_settings_advertisements'
-})
+const AdvertisementsToggle = withState( {
+  hasAdvertisements: true,
+} )( ( { hasAdvertisements, setState } ) => (
+  <ToggleControl
+    label="Fixed Background"
+    help={ hasAdvertisements ? 'Has advertisements.' : 'No advertisements.' }
+    checked={ hasAdvertisements }
+    onChange={ () => setState( ( state ) => ( { hasAdvertisements: ! state.hasAdvertisements } ) ) }
+  />
+) );
  
-let CommercialContentType = ControlCreate({
-  component: RadioControl,
-  name: 'advertising_settings_commercial_content'
-})
+const CommercialContentType = withState( {
+  option: 'none',
+} )( ( { option, setState } ) => (
+  <RadioControl
+    label="Commercial Content Type"
+    help="The type of advertising."
+    selected={ option }
+    options={ [
+      { label: 'None', value: 'none' },
+      { label: 'Sponsored content', value: 'sponsored_content' },
+      { label: 'Partnered content', value: 'partnered_content' },
+      { label: 'Brought to you by', value: 'brought_to_you_by' },
+    ] }
+    onChange={ ( option ) => { setState( { option } ) } }
+  />
+) );
 
-let AdvertiserName = ControlCreate({
-  component: TextControl,
-  name: 'advertising_settings_advertiser_name'
-})
+const AdvertiserName = withState( {
+    advertiserName: '',
+} )( ( { advertiserName, setState } ) => ( 
+    <TextControl
+        label="Advertiser's Name"
+        value={ advertiserName }
+        onChange={ ( advertiserName ) => setState( { advertiserName } ) }
+    />
+) );
 
 const AdvertisingSettingsSideBarPanel = () => (
     <PluginDocumentSettingPanel
@@ -28,16 +51,11 @@ const AdvertisingSettingsSideBarPanel = () => (
         title="Advertising Settings"
         className="advertising-settings"
     >
-      <label>{ 'Advertisements' }</label>
       <AdvertisementsToggle />
 
-      <br/>
-      <label>{ 'Commercial Content Type' }</label>
-      <CommercialContentType/>
+      <CommercialContentType />
 
-      <br/>
-      <label>{ 'Advertiser Name' }</label>
-      <AdvertiserName/>
+      <AdvertiserName />
 
     </PluginDocumentSettingPanel>
 )
