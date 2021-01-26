@@ -30,23 +30,23 @@ Completed as part of a job application.
 ### Fields
 
  - [ ] Advertisements
-   - [ ] Label: `Advertisements`
-   - [ ] Type: Toggle control
+   - [x] Label: `Advertisements`
+   - [x] Type: Toggle control
    - [ ] Default: On
 
  - [ ] Commercial content type
-   - [ ] Label: “Commercial content type”
-   - [ ] Type: Radio control
+   - [x] Label: “Commercial content type”
+   - [x] Type: Radio control
    - [ ] Options: 
-     - [ ] `None`     
-     - [ ] `Sponsored content`
-     - [ ] `Partnered content`
-     - [ ] `Brought to you by`
+     - [x] `None`     
+     - [x] `Sponsored content`
+     - [x] `Partnered content`
+     - [x] `Brought to you by`
    - [ ] Default: `None`
 
  - [ ] Advertiser name
-   - [ ] Label: `Advertiser name`
-   - [ ] Type: Text control
+   - [x] Label: `Advertiser name`
+   - [x] Type: Text control
    - [ ] Visibility: The advertiser name field is hidden while `None` is the selected commercial content type
 
 ## Building
@@ -139,3 +139,21 @@ To my virtual rubber duck: I've got meta fields created via PHP. I've got the ri
 w00t! Made a few changes at once, including some basic onChange event handler functions to write to the data store. These didn't seem to be working as expected, so SSH'd into the MariaDB container and deleted the entries that had been created during testing. After that, setting the `advertising_settings_commercial_content_type_metafield` saved the expected value to the DB and upon subsequent page load and `wp.data.select('core/editor').getEditedPostAttribute('meta')`, was showing the expected value. The component wasn't updating on changes in UI for that RadioControl, so will look at that next. The first component's boolean values may also not be sending the correct type for the backend, so also next on the list.
 
 OK, back from another break. Between last break and this one, I blew away all my JS and revisited [this example project](https://github.com/ambientos/ag-sidebox-fields/), which I didn't quite understand this morning, but now makes a lot more sense. The issues, as far as I can tell with my attempts were that my components weren't wrapped in a way to utilise  `withSelect` and `withDispatch`, then I'd started getting very hacky and jQuery-ish in trying to manually bind things. Also, my direct use of the components may not have been enough to allow adjusting props. By making a few adjustments to the sample project, I seem to be able to control the flow of data in/out of the components. Let's see if I can wrap that part up now!
+
+w00t! Looking good. Was getting weird issues on the wp-env container, so destroyed and restarted. Selected some options, saved post, et voila!
+
+```
+MariaDB [wordpress]> select * from wp_postmeta;
++---------+---------+--------------------------------------------------------+-------------------+
+| meta_id | post_id | meta_key                                               | meta_value        |
++---------+---------+--------------------------------------------------------+-------------------+
+|       1 |       2 | _wp_page_template                                      | default           |
+|       2 |       3 | _wp_page_template                                      | default           |
+|       3 |       5 | _edit_lock                                             | 1611659152:1      |
+|       4 |       5 | _pingme                                                | 1                 |
+|       5 |       5 | _encloseme                                             | 1                 |
+|       6 |       5 | advertising_settings_advertisements_metafield          | 1                 |
+|       7 |       5 | advertising_settings_commercial_content_type_metafield | partnered_content |
+|       8 |       5 | advertising_settings_advertiser_name_metafield         | somename          |
++---------+---------+--------------------------------------------------------+-------------------+
+```

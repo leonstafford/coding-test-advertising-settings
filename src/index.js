@@ -21,8 +21,6 @@ let AdvertiserName = ControlCreate({
   name: 'advertising_settings_advertiser_name_metafield'
 })
 
-
-
 /**
  * Register Plugin
  */
