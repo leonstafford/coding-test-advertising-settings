@@ -8,27 +8,27 @@ import {
 	TextControl,
 } from '@wordpress/components';
 import { withState, compose } from '@wordpress/compose';
-import { withSelect, withDispatch, dispatch, select } from '@wordpress/data';
+import { withSelect, withDispatch } from '@wordpress/data';
 import { Fragment } from '@wordpress/element';
 import domReady from '@wordpress/dom-ready';
 
 domReady( function () {
 	function updateHasAdvertising( newValue ) {
 		console.log( `Setting new hasAdvertising value to: ${ newValue }` );
-		dispatch( 'core/editor' ).editPost( {
-			meta: { advertising_settings_advertisements_metafield: newValue },
-		} );
+		// dispatch( 'core/editor' ).editPost( {
+		// 	meta: { advertising_settings_advertisements_metafield: newValue },
+		// } );
 	}
 
 	function updateCommercialContentType( newValue ) {
 		console.log(
 			`Setting new CommercialContentType option to: ${ newValue }`
 		);
-		dispatch( 'core/editor' ).editPost( {
-			meta: {
-				advertising_settings_commercial_content_type_metafield: newValue,
-			},
-		} );
+		// dispatch( 'core/editor' ).editPost( {
+		// 	meta: {
+		// 		advertising_settings_commercial_content_type_metafield: newValue,
+		// 	},
+		// } );
 	}
 
 	// function getCommercialContentType( ) {
@@ -106,11 +106,9 @@ domReady( function () {
 
 	const FieldsTestControl = compose( [
 		withSelect( () => {
-			console.log( 'withSelect' );
-			return 'something';
-			// return {
-			//     newValue: select( 'core/editor' ).getEditedPostAttribute( 'meta' )._metakey,
-			// };
+			return {
+			    newValue: select( 'core/editor' ).getEditedPostAttribute( 'meta' )._metakey,
+			};
 		} ),
 		withDispatch( ( dispatch ) => ( {
 			updateMeta( value ) {

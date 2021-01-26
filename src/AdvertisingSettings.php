@@ -46,7 +46,7 @@ final class AdvertisingSettings
         wp_enqueue_script(
             'advertising-settings-admin-js',
             plugins_url( '../build/index.js', __FILE__ ),
-            [ 'wp-plugins', 'wp-edit-post', 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor' ],
+            [ 'wp-data', 'wp-plugins', 'wp-edit-post', 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor' ],
             (string)filemtime( plugin_dir_path( __FILE__ ) . '/index.js' )   
         );
     }
