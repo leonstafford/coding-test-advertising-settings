@@ -9,7 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "wp-scripts start",
-    "build": "wp-scripts build"
+    "build": "wp-scripts build",
+    "lint:css": "wp-scripts lint-style",
+    "lint:js": "wp-scripts lint-js"
   },
   "repository": {
     "type": "git",
@@ -27,7 +29,8 @@
   },
   "homepage": "https://github.com/leonstafford/coding-test-advertising-settings#readme",
   "devDependencies": {
-    "@wordpress/scripts": "^13.0.0"
+    "@wordpress/scripts": "^13.0.0",
+    "eslint-plugin-import": "^2.22.1"
   },
   "dependencies": {
     "@wordpress/components": "^12.0.2",
@@ -35,6 +38,7 @@
     "@wordpress/data": "^4.26.2",
     "@wordpress/dom-ready": "^2.12.0",
     "@wordpress/edit-post": "^3.26.2",
+    "@wordpress/element": "^2.19.0",
     "@wordpress/plugins": "^2.24.2"
   }
 }
