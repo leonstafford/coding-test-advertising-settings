@@ -26,11 +26,19 @@ final class AdvertisingSettings
                 [$this, 'enqueue_admin_scripts']
             );
 
-            add_action(
-                'init',
-                [$this, 'advertising_settings_register_meta']
-            );
         }
+
+        add_action(
+            'init',
+            [$this, 'advertising_settings_register_meta']
+        );
+
+        add_filter(
+            'rest_post_dispatch',
+            [$this, 'log_rest_api_errors'],
+            10,
+            3
+        );
     }
 
     public function enqueue_admin_scripts(): void
@@ -52,6 +60,10 @@ final class AdvertisingSettings
                 'show_in_rest' => true,
                 'type' => 'boolean',
                 'single' => true,
+                'sanitize_callback' => 'sanitize_text_field',
+                'auth_callback' => function() { 
+                     return current_user_can('edit_posts');
+                }
             ]
         );
 
@@ -74,5 +86,30 @@ final class AdvertisingSettings
                 'single' => true,
             ]
         );
+    }
+
+    /**
+     * Log REST API errors
+     *
+     * @param WP_REST_Response $result  Result that will be sent to the client.
+     * @param WP_REST_Server   $server  The API server instance.
+     * @param WP_REST_Request  $request The request used to generate the response.
+     */
+    public function log_rest_api_errors( $result, $server, $request ) {
+        if ( $result->is_error() ) {
+            error_log( sprintf(
+                "REST request: %s: %s",
+                $request->get_route(),
+                print_r( $request->get_params(), true )
+            ) );
+
+            error_log( sprintf(
+                "REST result: %s: %s",
+                $result->get_matched_route(),
+                print_r( $result->get_data(), true )
+            ) );
+        }
+
+        return $result;
     }
 }
