@@ -75,7 +75,7 @@ I'll use a unified `composer test` to test the PHP and JS together.
 
 ### Manual testing
 
- - `composer i`
+ - `composer i --ignore-platform-reqs`
  - `npm i`
  - `npm run-script build`
  - `wp-env start` launches docker container on `:8888` with plugin installed and activated. Username/password are `admin/password`.
