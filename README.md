@@ -128,3 +128,6 @@ Now have a custom panel showing and have registered some post metas for our fiel
 Trying to manually trigger the data store update from browser console. Is updating in place, but not persisting. Not seeing any errors from API, tried adding extra API error logging, but still not seeing anything. Time to do some more reading.
 
 Have parked that for now and moved onto adding components. Wow, this is much nicer than regular WP views :D Borrwed some ControlLoading snipper from GitHub, but will try to revert back to the official examples in the WP Gutenberg repo to better understand things.
+
+Reverted controls back to how they're demonstrated in the [WP repo](https://github.com/WordPress/gutenberg/tree/master/packages/components/src). They look a bit better and have an initial state now. I'll still need to handle the dispatching to save changes, conditional rendering based on select option and disabling while WP post events are taking place. 
+Now that I've got standard controls rendering in the right place, I should be able to extract the other needed parts from WP's [custom sidebar tutorial](https://developer.wordpress.org/block-editor/tutorials/plugin-sidebar-0), ignoring the part for creating a custom sidebar.
