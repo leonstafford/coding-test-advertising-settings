@@ -57,4 +57,4 @@ cd $EXEC_DIR
 # clear dev dependencies
 rm -Rf $EXEC_DIR/vendor/*
 # load prod deps
-composer install --quiet
+composer install --quiet --no-dev --ignore-platform-reqs
