@@ -11,7 +11,7 @@ let ControlCreate = controlProps => {
 
     return <ControlComponent
       value={props[controlName]}
-      onChange={(value) => props.onMetaFieldChange(value)}
+      onChange={(value) => props.onMetaFieldChange(value, controlName)}
     />
   }
 
@@ -25,8 +25,12 @@ let ControlCreate = controlProps => {
 
   Control = withDispatch(
     (dispatch) => {
+      console.log('Dispatching');
+
+
       return {
-        onMetaFieldChange: (value) => {
+        onMetaFieldChange: (value, controlName) => {
+          console.log(`Meta field value ${value} for ${controlName}`);
           dispatch('core/editor').editPost({ meta: { [controlNameMeta]: value } })
         }
       }
