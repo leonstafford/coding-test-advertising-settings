@@ -1,7 +1,7 @@
 console.log('loaded script');
 
-const { registerPlugin } = wp.plugins
-const { PluginDocumentSettingPanel } = wp.editPost
+import { registerPlugin } from "@wordpress/plugins";
+import { PluginDocumentSettingPanel } from "@wordpress/edit-post";
  
 const AdvertisingSettingsSideBarPanel = () => (
     <PluginDocumentSettingPanel
