@@ -55,21 +55,21 @@ final class AdvertisingSettings
     {
         register_meta(
             'post',
-            '_advertising_settings_advertisements_metafield',
+            'advertising_settings_advertisements_metafield',
             [
                 'show_in_rest' => true,
                 'type' => 'boolean',
                 'single' => true,
-                'sanitize_callback' => 'sanitize_text_field',
-                'auth_callback' => function() { 
-                     return current_user_can('edit_posts');
-                }
+                // 'sanitize_callback' => 'sanitize_text_field',
+                // 'auth_callback' => function() { 
+                //      return current_user_can('edit_posts');
+                // }
             ]
         );
 
         register_meta(
             'post',
-            '_advertising_settings_commercial_content_type_metafield',
+            'advertising_settings_commercial_content_type_metafield',
             [
                 'show_in_rest' => true,
                 'type' => 'string',
@@ -79,7 +79,7 @@ final class AdvertisingSettings
 
         register_meta(
             'post',
-            '_advertising_settings_advertiser_name_metafield',
+            'advertising_settings_advertiser_name_metafield',
             [
                 'show_in_rest' => true,
                 'type' => 'string',
