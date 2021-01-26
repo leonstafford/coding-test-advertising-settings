@@ -18,4 +18,23 @@ namespace AdvertisingSettings;
  */
 final class AdvertisingSettings
 {
+    public function __construct()
+    {
+        if( is_admin() ){
+            add_action(
+                'enqueue_block_editor_assets',
+                [$this, 'enqueue_admin_scripts']
+            );
+        }
+    }
+
+    public function enqueue_admin_scripts()
+    {
+        wp_enqueue_script(
+            'advertising-settings-admin-js',
+            plugins_url( '../build/index.js', __FILE__ ),
+            [ 'wp-blocks', 'wp-element', 'wp-components', 'wp-editor' ],
+            filemtime( plugin_dir_path( __FILE__ ) . '/index.js' )   
+        );
+    }
 }
