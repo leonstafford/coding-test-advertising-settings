@@ -34,15 +34,15 @@ Completed as part of a job application.
    - [x] Type: Toggle control
    - [ ] Default: On
 
- - [ ] Commercial content type
+ - [x] Commercial content type
    - [x] Label: “Commercial content type”
    - [x] Type: Radio control
-   - [ ] Options: 
+   - [x] Options: 
      - [x] `None`     
      - [x] `Sponsored content`
      - [x] `Partnered content`
      - [x] `Brought to you by`
-   - [ ] Default: `None`
+   - [x] Default: `None`
 
  - [ ] Advertiser name
    - [x] Label: `Advertiser name`

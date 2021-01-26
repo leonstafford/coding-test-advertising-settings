@@ -39,9 +39,24 @@ let ControlCreate = controlProps => {
 
   Control = withSelect(
     (select) => {
-      return {
-        [controlName]: select('core/editor').getEditedPostAttribute('meta')[controlNameMeta]
+      if (controlName === 'advertising_settings_commercial_content_type_metafield') {
+          let value = select('core/editor').getEditedPostAttribute('meta')[controlNameMeta]
+
+          if (! value) {
+            return {
+              [controlName]: 'none'
+            }
+          } else {
+            return {
+              [controlName]: select('core/editor').getEditedPostAttribute('meta')[controlNameMeta]
+            }
+          }
+      } else {
+        return {
+          [controlName]: select('core/editor').getEditedPostAttribute('meta')[controlNameMeta]
+        }
       }
+
     }
   )(Control)
 
