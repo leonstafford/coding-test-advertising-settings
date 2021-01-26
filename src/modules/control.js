@@ -11,6 +11,7 @@ let ControlCreate = controlProps => {
     if (controlProps.name === 'advertising_settings_advertisements_metafield') {
       return <ControlComponent
         value={props[controlName]}
+        label={'Advertisements'}
         checked={ props[controlName] }
         onChange={(value) => props.onMetaFieldChange(! props[controlName], controlName)}
       />
@@ -18,6 +19,7 @@ let ControlCreate = controlProps => {
       return <ControlComponent
         value={props[controlName]}
         selected={ props[controlName] }
+        label={'Commercial Content Type'}
         options={ [
           { label: 'None', value: 'none' },
           { label: 'Sponsored content', value: 'sponsored_content' },
@@ -29,6 +31,7 @@ let ControlCreate = controlProps => {
     } else if (controlProps.name === 'advertising_settings_advertiser_name_metafield') {
       return <ControlComponent
         value={props[controlName]}
+        label={'Advertiser Name'}
         onChange={(value) => props.onMetaFieldChange(value, controlName)}
       />
     }

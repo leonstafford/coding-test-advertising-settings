@@ -32,13 +32,13 @@ registerPlugin('advertising-settings-panel', {
           name='advertising-settings-panel'
           title={ 'Advertising Settings' }
         >
-          <label>{ 'Advertisements' }</label>
           <Advertisements/>
+          <br />
 
-          <label>{ 'Commercial Content Type' }</label>
           <ContentType />
 
-          <label>{ 'Advertiser Name' }</label>
+          <br />
+          <br />
           <AdvertiserName/>
         </PluginDocumentSettingPanel>
 
