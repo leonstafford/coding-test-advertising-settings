@@ -17,7 +17,7 @@ Completed as part of a job application.
 
  - [x] In the Gutenberg/Block Editor, a new custom panel is visible in the sidebar for the standard “post” type
  - [x] The custom panel title is “Advertising Settings”
- - [ ] Three fields appear in the custom panel, their requirements are outlined below
+ - [x] Three fields appear in the custom panel, their requirements are outlined below
  - [ ] These fields should be disabled while post is being saved/updated/published
 
 ### Bonus points
@@ -29,10 +29,10 @@ Completed as part of a job application.
 
 ### Fields
 
- - [ ] Advertisements
+ - [x] Advertisements
    - [x] Label: `Advertisements`
    - [x] Type: Toggle control
-   - [ ] Default: On
+   - [x] Default: On
 
  - [x] Commercial content type
    - [x] Label: “Commercial content type”
@@ -55,14 +55,14 @@ Completed as part of a job application.
 
  - `composer i --ignore-platform-reqs` (workaround for Automattic's phpcs-neutron locked to < 8 still)
  - `npm i`
- - `npm build`
+ - `npm run-script build`
 
 ### To build an installable zip
 
  - `composer i --ignore-platform-reqs` (workaround for Automattic's phpcs-neutron locked to < 8 still)
  - `npm i`
- - `npm build`
- - `composer build PLUGIN-NAME-VERSION` where output will be `PLUGIN-NAME-VERSION.zip`
+ - `npm run-script build`
+ - `# composer build PLUGIN-NAME-VERSION` where output will be `PLUGIN-NAME-VERSION.zip` *Pending*
 
 ## Testing
 
@@ -77,6 +77,7 @@ I'll use a unified `composer test` to test the PHP and JS together.
 
  - `composer i`
  - `npm i`
+ - `npm run-script build`
  - `wp-env start` launches docker container on `:8888` with plugin installed and activated. Username/password are `admin/password`.
 
 ## Development notes

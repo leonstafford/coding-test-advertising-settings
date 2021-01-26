@@ -2,7 +2,7 @@
 
 ######################################
 ##
-## Build WP2Static for wp.org
+## Build Advertising Settings installer zip
 ##
 ## script archive_name dont_minify
 ##
@@ -17,8 +17,8 @@ TMP_DIR=$HOME/plugintmp
 rm -Rf $TMP_DIR
 mkdir -p $TMP_DIR
 
-rm -Rf $TMP_DIR/wp2static
-mkdir $TMP_DIR/wp2static
+rm -Rf $TMP_DIR/advertising-settings
+mkdir $TMP_DIR/advertising-settings
 
 # clear dev dependencies
 rm -Rf $EXEC_DIR/vendor/*
@@ -26,10 +26,10 @@ rm -Rf $EXEC_DIR/vendor/*
 composer install --quiet --no-dev --optimize-autoloader
 
 # cp all required sources to build dir
-cp -r $EXEC_DIR/src $TMP_DIR/wp2static/
-cp -r $EXEC_DIR/vendor $TMP_DIR/wp2static/
-cp -r $EXEC_DIR/views $TMP_DIR/wp2static/
-cp -r $EXEC_DIR/*.php $TMP_DIR/wp2static/
+cp -r $EXEC_DIR/src $TMP_DIR/advertising-settings/
+cp -r $EXEC_DIR/vendor $TMP_DIR/advertising-settings/
+cp -r $EXEC_DIR/views $TMP_DIR/advertising-settings/
+cp -r $EXEC_DIR/*.php $TMP_DIR/advertising-settings/
 
 cd $TMP_DIR
 
@@ -37,7 +37,7 @@ cd $TMP_DIR
 find . -type d -exec chmod 755 {} \;
 find . -type f -exec chmod 644 {} \;
 
-zip --quiet -r -9 ./$1.zip ./wp2static
+zip --quiet -r -9 ./$1.zip ./advertising-settings
 
 cd -
 
