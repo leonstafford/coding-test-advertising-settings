@@ -22,7 +22,7 @@ Completed as part of a job application.
 
 ### Bonus points
 
- - [ ] Test WordPress environment to be hosted and publicly accessible (with username/password)
+ - [x] Test WordPress environment to be hosted and publicly accessible (with username/password)
  - [x] Local environment is ideally run via Docker
  - [ ] Frontend code is ideally Typescript
  - [ ] Code has unit and/or functional tests
