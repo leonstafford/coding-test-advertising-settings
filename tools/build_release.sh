@@ -23,7 +23,7 @@ mkdir $TMP_DIR/advertising-settings
 # clear dev dependencies
 rm -Rf $EXEC_DIR/vendor/*
 # load prod deps and optimize loader
-composer install --quiet --no-dev --optimize-autoloader --ignore-platform-reqs
+composer install --quiet --optimize-autoloader --ignore-platform-reqs
 
 # install frontend dependencies
 npm i
@@ -31,12 +31,11 @@ npm i
 # build frontend
 npm run-script build
 
-
-
 # cp all required sources to build dir
 cp -r $EXEC_DIR/src $TMP_DIR/advertising-settings/
+cp -r $EXEC_DIR/build $TMP_DIR/advertising-settings/
 cp -r $EXEC_DIR/vendor $TMP_DIR/advertising-settings/
-cp -r $EXEC_DIR/views $TMP_DIR/advertising-settings/
+cp -r $EXEC_DIR/node_modules $TMP_DIR/advertising-settings/
 cp -r $EXEC_DIR/*.php $TMP_DIR/advertising-settings/
 
 cd $TMP_DIR
