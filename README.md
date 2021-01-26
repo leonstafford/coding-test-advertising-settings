@@ -157,3 +157,5 @@ MariaDB [wordpress]> select * from wp_postmeta;
 |       8 |       5 | advertising_settings_advertiser_name_metafield         | somename          |
 +---------+---------+--------------------------------------------------------+-------------------+
 ```
+
+Finished the RadioControl acceptance criteria with setting default to `none` not too bad. Was wondering about how to set the ToggleControl's one, as it is boolean, so couldn't check for empty in current setup. Looking at `wp_postmeta` though, there's no entries until a post is saved, so can look for empty row for the post ID to determine if to default it to `On`. For toggling visbility of the `Advertiser Name`, I can probably get away with some lookups in the `./src/module/control.js`'s event handlers, as it's only 3 controls. Not scalable and not as pretty as I've done in Vue and Angular before, but will still take me a while to figure out this React stuff...
