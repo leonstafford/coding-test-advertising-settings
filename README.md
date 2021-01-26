@@ -123,4 +123,4 @@ Browsing through docs and tutorials as I won't be the first person to add a cust
 
 Started with `wp-scripts` training wheels on, but doesn't look like it will allow compiling TS, so can go back to that and replace with custom build tool later, time permitting.
 
-
+Now have a custom panel showing and have registered some post metas for our fields. Still haven't built the components for the fields or any data storing/retrieving.
