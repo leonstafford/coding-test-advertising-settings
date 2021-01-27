@@ -49,7 +49,7 @@ Completed as part of a job application.
    - [x] Type: Text control
    - [ ] Visibility: The advertiser name field is hidden while `None` is the selected commercial content type
 
-## Building
+## 🏠
 
 ### To use plugin from source code
 
